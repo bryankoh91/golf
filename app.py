@@ -6,7 +6,7 @@ from flask_mongoengine import MongoEngine
 from flask_login import LoginManager
 from app.models.users import User
 from app.models.golfsetData import GolfSet, Swing
-from .models.users import User 
+from golf.models.users import User 
 import csv
 import io
 
