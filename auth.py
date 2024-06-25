@@ -13,8 +13,8 @@ from controllers.auth import auth
 # from auth import auth
 
 # register blueprint from respective module
-app.register_blueprint(dashboard)
-app.register_blueprint(auth)
+auth.register_blueprint(dashboard)
+auth.register_blueprint(auth)
 
 # from models.chart import CHART
 from models.users import User
@@ -27,11 +27,11 @@ import io
 def load_user(user_id):
     return User.objects(pk=user_id).first()
 
-@app.route('/base')
+@auth.route('/base')
 def show_base():
     return render_template('base.html')
 
-@app.route("/upload", methods=['GET','POST'])
+@auth.route("/upload", methods=['GET','POST'])
 @login_required
 def upload():
     # if hte user just key in the /upload in the address
@@ -98,7 +98,7 @@ def upload():
                     return redirect(url_for("upload"))
                 return redirect(url_for("upload"))
                 
-@app.route("/swing", methods=['GET','POST'])
+@auth.route("/swing", methods=['GET','POST'])
 @login_required
 def swing():
     if request.method == 'GET':
@@ -106,7 +106,7 @@ def swing():
         users = User.getAllUsers()
         return render_template("golfcalculator.html", alluser=users, name=current_user.name)
 
-@app.route('/swingprocess', methods=['POST'])
+@auth.route('/swingprocess', methods=['POST'])
 @login_required
 def swingprocess():
     email = request.form['email']
@@ -122,7 +122,7 @@ def swingprocess():
     Swing.createSwingDistance(email, club_label, speed, datetime_str, distance)
     return redirect(url_for("swing"))
     
-@app.route("/swingchart", methods=['GET', 'POST'])
+@auth.route("/swingchart", methods=['GET', 'POST'])
 @login_required
 def swingchart():
     if request.method == 'GET':
@@ -160,7 +160,7 @@ def swingchart():
     return redirect(url_for("swingchart"))
         
 
-@app.route("/getClubs", methods=["POST"])
+@auth.route("/getClubs", methods=["POST"])
 @login_required
 def getClubs():
     email = request.form.get("email")
@@ -174,7 +174,7 @@ def getClubs():
 
     return jsonify({"myClubs":arr})
 
-@app.route("/getClubHeight", methods=["POST"])
+@auth.route("/getClubHeight", methods=["POST"])
 @login_required
 def getClubHeight():
     email = request.form.get("email")
@@ -192,12 +192,12 @@ def getClubHeight():
     return jsonify({"clubheight":clubHeight})
 
 
-@app.route("/getClubAdvice", methods=["GET"])
+@auth.route("/getClubAdvice", methods=["GET"])
 def getClubAdvice():
     if request.method == 'GET':
         return render_template('getClubAdvice.html')
 
-@app.route("/getClubAdviceprocess", methods=["POST"])
+@auth.route("/getClubAdviceprocess", methods=["POST"])
 def getClubAdviceprocess():
     email = current_user.email
     swing_speed = float(request.form.get("swing_speed"))
