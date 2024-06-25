@@ -2,7 +2,7 @@
 
 from flask_login import login_required, current_user
 from flask import render_template, request, jsonify, redirect, url_for, flash
-from auth import app, db, login_manager
+from app import app, db, login_manager
 from datetime import datetime, date
 from pymongo import MongoClient
 
