@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block mainblock %}
+<div class="card-header">
+  <h2>Upload recordings</h2>
+</div>
+<div class="card-body">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li style="color:red;">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+      {% endwith %}
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for='upload'>Upload for golfer</label>
+            <select name="golfer" id="selected_golfer" onchange="myFunction8()">
+                <option value="all">Select One</option>
+                <!-- this will tell app.py which golfer is selected -->
+                {% for user in alluser %}
+                <option value="{{user.email}}">{{user.name}}</option>
+                {% endfor %}
+            </select>
+            <label for='data_type'>for the golf data type</label>
+            <!-- this will tell app.py issit golf set or swings -->
+            <select name="data_type" id="selected_data_type">
+                <option value="Golf Set">Golf Set</option>
+                <option value="Swings">Swings</option>
+            </select>
+            <p>
+                <label>Golf Set line:</label>                    
+                <br>
+                <label style="font-size: 13px;">label,clubtype,loft,weight,size/material/style,length,weight,material,flex,diameter,
+                    weightmaterial</label>
+                <br>
+                <label>Swing line:</label>
+                <br>
+                <label style="font-size: 14px;"> datetime,email,speed,label</label>
+                <br>
+            </p>
+            <label for="file">Upload your csv file:</label>
+            <input type="file" name="file" accept=".csv, .txt" required><br>
+            <input class="chosen_email" name="upload_email" type= "hidden" value="">
+        </div>
+        <div>
+            <button type="submit" value="upload" name="type">Upload</button>
+        </div>
+    </form>
+</div>
+<script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+{% endblock %}

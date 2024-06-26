@@ -1,0 +1,45 @@
+{% extends "base.html" %} 
+{% block mainblock %} 
+    <div class="card-header"> 
+        <h3>Golf Club Advisor</h3> 
+    </div> 
+    <div class="card-body"> 
+        <div class="container-fluid col-sm-12"> 
+            <form id="clubAdviceForm" action="/getClubAdviceprocess" method="POST"> 
+                <div class="form-group row"> 
+                  <label for="swing speed" class="col-sm-3 col-form-label">Swing Speed 
+                    (mph)</label> 
+                  <div class="col-sm-7"> 
+                    <input class="form-control" id="swing speed" placeholder="speed" name="swing_speed" required> 
+                  </div> 
+                </div> 
+                <div class="form-group row"> 
+                  <label for="distance" class="col-sm-3 col-form-label">Distance (yards)</label> 
+                  <div class="col-sm-7"> 
+                    <input class="form-control" id="distance" placeholder="distance" name="distance" required> 
+                  </div> 
+                </div> 
+                <div class="form-group row">                  
+                  </div> 
+                </div> 
+                 <div class="form-group row"> 
+                  <label for="spce" class="col-sm-3 col-form-label"></label> 
+                    <div class="col-sm-7"> 
+                    </div> 
+                  </div> 
+                <div class="form-group row form-check"> 
+                </div> 
+            <div class="pre_action_space">  </div> 
+ 
+            <div class="d-flex justify-content-center align-items-center mb-3">
+              <button type="submit" class="btn btn-primary mr-5">Swing</button> 
+              <button type="button" class="btn btn-primary" id="clear">Reset</button> 
+            </div>
+            <div id="output_space" class="output_space" style="height: 500px;">
+                <p>Club Advice</p>
+            </div>
+          </div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="{{ url_for('static', filename='js/log0.js')}}"></script> 
+    </div> 
+{% endblock %}
