@@ -1,0 +1,30 @@
+{% extends "swing.html" %}
+{% block mainblock %}
+
+<div class="card-header">
+  <h2>Golf Distance Calculator</h2>
+</div>
+<div class="card-body">
+  <form action ="/swingprocess" method="POST">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name= "email" placeholder="poh@abc.com">
+    </div>
+    <div class="form-group">
+      <label for="club">Club</label>
+      <input type="text" class="form-control" id="club" name="club" placeholder="club">
+    </div>
+    <div class="form-group">
+      <label for="swing_speed">Swing Speed:</label>
+      <input type="text" class="form-control" id="swing_speed"name ="swing_speed" placeholder="speed (in mph)">
+    </div>
+    <div class="form-group">
+      <label for="datetime">Date & Time:</label>
+      <input type="datetime-local" class="form-control" id="datetime" name = "datetime" placeholder="mm/dd/yyyy">
+    </div>
+      <button type="submit" class="btn btn-primary">Swing</button>
+    </form>
+  </form>
+</div>
+
+{% endblock %}
